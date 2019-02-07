@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8" />
+<title></title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, max-age=0, must-revalidate">
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+
+
+<meta property="og:title" content="標題"/>
+<meta property="og:description" content="描述"/>
+<meta property="og:image" content="https://i.imgur.com/ql6mO8W.png"/>
+ 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+<style>
+body{}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(e){
+	console.log( "DOMContentLoaded" );
+	var bb=document.querySelector("body");
+	var str=`
+Go-Toubun no Hanayome - 05
+  `;
+	bb.insertAdjacentHTML('beforeend', '<h1>'+str+'</h1>');
+	document.title=str;
+	console.log(bb);
+});
+
+document.addEventListener("readystatechange",function(e){
+	console.log( "readystatechange" );
+	//console.log( e );
+	//console.log( document.readyState );
+	if(document.readyState === "complete"){
+		console.log( 'complete' );
+		var bb=document.querySelector("h1");
+		var str=`
+		網路上收集的圖片
+		遇到喜歡的會放在這邊
+		`;
+		bb.insertAdjacentHTML('afterend', '<pre>'+str+'</pre>');
+	}
+});
+
+	
+
+$(function(){});
+$(()=>{
+	console.log('jq');
+	//
+	$.gg=[];
+	$.gg.cc=0;
+	//
+	//poi();
+	poi2();
+});
+
+function poi2(){
+
+var str=`
+
+
+龜190208+24+001.jpg
+龜190208+24+002.jpg
+龜190208+24+003.jpg
+龜190208+24+005.jpg
+龜190208+24+006.jpg
+龜190208+24+007.jpg
+龜190208+24+008.jpg
+龜190208+24+009.jpg
+龜190208+24+010.jpg
+龜190208+24+011.jpg
+龜190208+24+012.jpg
+龜190208+24+013.jpg
+龜190208+24+014.jpg
+龜190208+24+015.jpg
+龜190208+24+016.jpg
+龜190208+24+017.jpg
+龜190208+24+018.jpg
+龜190208+24+019.jpg
+龜190208+24+020.jpg
+龜190208+24+021.jpg
+龜190208+24+022.jpg
+龜190208+24+023.jpg
+龜190208+24+024.jpg
+龜190208+24+025.jpg
+龜190208+24+026.jpg
+龜190208+24+027.jpg
+龜190208+24+028.jpg
+龜190208+24+029.jpg
+龜190208+24+030.jpg
+龜190208+24+031.jpg
+龜190208+24+032.jpg
+龜190208+24+033.jpg
+龜190208+24+034.jpg
+龜190208+24+035.jpg
+龜190208+24+036.jpg
+龜190208+24+037.jpg
+
+
+
+`;
+	str=str.split("\n");
+	//typeof element
+	str=str.filter(function(element){
+		return (element.length>0);
+	});
+	str.forEach(function(element) {
+		//console.log(element.length);
+		poi(''+element);
+	});
+
+	//console.log(str);
+	//poi();
+}
+function poi(input_var){
+	//var img = new Image();
+	var img = document.createElement('img')
+	img.src = input_var;
+	//img.setAttribute("crossOrigin",'Anonymous')
+	//console.log( img.src );
+
+	img.onload = function(e){
+		//console.log(e);
+		($.gg.cc++);
+		console.log( $.gg.cc );
+		var imgw=$(img).prop('naturalWidth');
+		var imgh=$(img).prop('naturalHeight');
+		console.log( imgw,imgh );//naturalHeight
+		if(  imgw>0 && imgh>0  ){
+			var c = document.createElement('canvas');
+			var ctx = c.getContext('2d');
+			c.width = 1280;
+			c.height = 720;
+      if(c.width>c.height){
+        c.width=c.width+2;
+      }else{
+        c.height=c.height+2;
+      }
+			ctx.drawImage(img,0,0, c.width , c.height );//
+			var img_new = c.toDataURL("image/jpeg");
+			//console.log( img_new );
+			var newimg = document.createElement('img');
+			newimg.src=img_new;
+			var bb=document.querySelector("body");
+			bb.appendChild(newimg);
+		}else{
+			console.log('錯誤的wh');
+			console.log(img.src);
+			//throw 
+		}//if
+	};//img.onload
+	img.onerror=function(e){
+		console.log('img.onerror');
+		//console.log(e);
+		console.log(img.src);
+	};//img.onerror
+
+}//poi
+
+</script>
+
+</head>
+<body>
+
+
+
+</body>
+</html>
